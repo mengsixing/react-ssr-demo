@@ -1,6 +1,7 @@
 import React from 'react';
+import Header from '../../components/Header'
 
-class App extends React.Component {
+class Home extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -16,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>React 服务端渲染demo</h1>
+        <Header></Header>
         <p>
           <button onClick={() => this.showConsole()}>
             {this.state.buttonText}
@@ -28,4 +29,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Home;
