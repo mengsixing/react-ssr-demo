@@ -1,0 +1,33 @@
+{
+  "name": "react-ssr-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:server && npm run build:client",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:server": "webpack --config ./build/webpack.server.js --watch",
+    "dev:client": "webpack --config ./build/webpack.browser.js --watch",
+    "dev:start": "sleep 2 && nodemon --watch dist --exec  node ./dist/server.js"
+  },
+  "keywords": [],
+  "author": "yhlben",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "nodemon": "^1.18.7",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.27.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-merge": "^4.1.4",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
