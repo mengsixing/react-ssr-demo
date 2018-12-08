@@ -7,17 +7,21 @@
     "build": "npm run build:server && npm run build:client",
     "dev": "npm-run-all --parallel dev:*",
     "dev:server": "webpack --config ./build/webpack.server.js --watch",
-    "dev:client": "webpack --config ./build/webpack.browser.js --watch",
-    "dev:start": "sleep 2 && nodemon --watch dist --exec  node ./dist/server.js"
+    "dev:client": "webpack --config ./build/webpack.client.js --watch",
+    "dev:start": "sleep 5 && nodemon --watch dist --exec  node ./dist/server.js"
   },
   "keywords": [],
   "author": "yhlben",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1"
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",

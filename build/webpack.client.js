@@ -2,8 +2,8 @@ const path = require('path');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 
-const browserConfig = {
-  entry: './src/browser/index.js',
+const clientConfig = {
+  entry: './src/client/index.js',
   mode: 'development',
   output: {
     filename: 'client.js',
@@ -11,4 +11,4 @@ const browserConfig = {
   }
 };
 
-module.exports = merge(baseConfig, browserConfig);
+module.exports = merge(baseConfig, clientConfig);

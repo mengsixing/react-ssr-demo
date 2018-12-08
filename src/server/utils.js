@@ -2,13 +2,16 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Routes from '../shared/Routes';
-
+import { Provider } from 'react-redux';
+import getStore from '../shared/store'
 
 export const render = req => {
   const content = renderToString(
-    <StaticRouter context={{}} location={req.url}>
-      {Routes}
-    </StaticRouter>
+    <Provider store={getStore()}>
+      <StaticRouter context={{}} location={req.url}>
+        {Routes}
+      </StaticRouter>
+    </Provider>
   );
   var html = `
     <!DOCTYPE html>
