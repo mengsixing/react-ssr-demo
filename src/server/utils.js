@@ -1,15 +1,24 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-import Routes from '../shared/Routes';
-import { Provider } from 'react-redux';
-import getStore from '../shared/store'
+import { StaticRouter, Route } from 'react-router-dom';
 
-export const render = req => {
+import { Provider } from 'react-redux';
+
+export const render = (store, routes, req) => {
+  // matchPath只能解决单级路由
+  // routes.some(route => {
+  // 	const match = matchPath(req.path, route);
+  // 	if (match) matchedRoutes.push(route);
+  // });
+
   const content = renderToString(
-    <Provider store={getStore()}>
+    <Provider store={store}>
       <StaticRouter context={{}} location={req.url}>
-        {Routes}
+        <div>
+          {routes.map(route => (
+            <Route {...route} />
+          ))}
+        </div>
       </StaticRouter>
     </Provider>
   );
@@ -24,10 +33,12 @@ export const render = req => {
       </head>
       <body>
         <div id="root">${content}</div>
+        <script>
+          window.REDUX_STORE = ${JSON.stringify(store.getState())};
+        </script>
         <script src="/client.js" defer></script>
       </body>
     </html>
     `;
-
   return html;
 };

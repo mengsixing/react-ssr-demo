@@ -1,14 +1,20 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Routes from '../shared/Routes';
+import { BrowserRouter, Route } from 'react-router-dom';
+import routes from '../shared/Routes';
 import { Provider } from 'react-redux';
-import getStore from '../shared/store';
+import { getCLientStore } from '../shared/store';
 
 const App = () => {
   return (
-    <Provider store={getStore()}>
-      <BrowserRouter>{Routes}</BrowserRouter>
+    <Provider store={getCLientStore()}>
+      <BrowserRouter>
+        <div>
+          {routes.map(route => (
+            <Route {...route} />
+          ))}
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 };
