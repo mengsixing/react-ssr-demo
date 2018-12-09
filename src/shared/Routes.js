@@ -1,12 +1,13 @@
 import App from '../shared/containers/App';
 import Home from './containers/Home';
-import Login from './containers/Login';
+import Detail from './containers/Detail';
 
 const routes = [
   {
     key: 'app',
     path: '/',
     component: App,
+    loadData: App.loadData,
     routes: [
       {
         key: 'home',
@@ -16,9 +17,9 @@ const routes = [
         loadData: Home.loadData
       },
       {
-        key: 'login',
-        path: '/login',
-        component: Login,
+        key: 'detail',
+        path: '/detail',
+        component: Detail,
         exact: true
       }
     ]
