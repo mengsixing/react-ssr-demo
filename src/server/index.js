@@ -4,6 +4,7 @@ import { getServerStore } from '../shared/store';
 import { matchRoutes } from 'react-router-config';
 import routes from '../shared/Routes';
 import proxy from 'express-http-proxy';
+import { resolve } from 'path';
 
 const app = express();
 
@@ -26,12 +27,27 @@ app.get('*', (req, res) => {
   const promises = [];
   matchedRoutes.forEach(item => {
     if (item.route.loadData) {
-      promises.push(item.route.loadData(store));
+      // promise容错处理
+      const promise = new Promise(resolve => {
+        item.route
+          .loadData(store)
+          .then(resolve)
+          .catch(resolve);
+      });
+      promises.push(promise);
     }
   });
 
   Promise.all(promises).then(() => {
-    return res.send(render(store, routes, req));
+    const staticContext = {styles:[]};
+    const html = render(store, routes, req, staticContext);
+
+    if (staticContext.action === 'REPLACE') {
+      res.redirect(staticContext.url);
+    } else {
+      res.status(staticContext.statusCode || 200);
+    }
+    return res.send(html);
   });
 });
 

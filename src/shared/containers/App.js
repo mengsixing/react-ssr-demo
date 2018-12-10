@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header staticContext={this.props.staticContext} />
         <div>{renderRoutes(this.props.route.routes)}</div>
       </div>
     );

@@ -2,11 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from './store/actions';
+import styles from './styles.css';
+import withStyle from '../WithStyle';
 
 class Header extends React.Component {
+  componentWillMount() {
+    if (this.props.staticContext) {
+      this.props.staticContext.styles.push(styles._getCss());
+    }
+  }
   render() {
     return (
-      <div>
+      <div className={styles.header}>
         <div>
           <Link to="/">首页</Link>
           {this.props.islogin ? (
@@ -39,4 +46,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps
-)(Header);
+)(withStyle(Header, styles));

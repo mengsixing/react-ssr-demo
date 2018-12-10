@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from './store/actions';
+import styles from './styles.css';
+import withStyle from '../../components/WithStyle';
 
 class Home extends React.Component {
   constructor() {
@@ -28,7 +30,7 @@ class Home extends React.Component {
     return (
       <div>
         {this.renderListData()}
-        <p>
+        <p className={styles.test}>
           <button onClick={() => this.showConsole()}>
             {this.state.buttonText}
           </button>
@@ -38,6 +40,7 @@ class Home extends React.Component {
   }
 }
 
+// 组件静态方法会被connect挂载到新的高阶组件上，所以connect后方法任然存在
 Home.loadData = store => {
   return store.dispatch(actions.getHomeData());
 };
@@ -55,4 +58,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps
-)(Home);
+)(withStyle(Home, styles));

@@ -1,6 +1,7 @@
 import App from '../shared/containers/App';
 import Home from './containers/Home';
 import Detail from './containers/Detail';
+import NotFound from './containers/NotFound';
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
         path: '/detail',
         component: Detail,
         exact: true
+      },
+      {
+        // 配置404页面
+        component: NotFound
       }
     ]
   }
