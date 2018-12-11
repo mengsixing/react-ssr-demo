@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
+import { minify } from 'html-minifier';
 
 export const render = (store, routes, req, staticContext) => {
   // matchPath只能解决单级路由
@@ -42,9 +43,14 @@ export const render = (store, routes, req, staticContext) => {
         <script>
           window.REDUX_STORE = ${JSON.stringify(store.getState())};
         </script>
-        <script src="/client.js" defer></script>
+        <script src="./client.js" defer></script>
       </body>
     </html>
     `;
-  return html;
+  var minifyHtml = minify(html,{
+    minifyCSS:true,
+    minifyJS:true,
+    minifyURLs:true
+  })
+  return minifyHtml;
 };

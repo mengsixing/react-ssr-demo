@@ -13,7 +13,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>ssr</title>
   </head>
   <body>
     <div id="root"></div>
@@ -131,5 +131,21 @@ prerender 库的原理：主要针对爬虫访问，`先请求客户端渲染的
 
 > nginx 判断访问类型
 >
-> > 用户访问 -> 直接走客户端渲染
-> > 爬虫访问 -> 走预渲染
+> > 用户访问 ：直接走客户端渲染
+> >
+> > 爬虫访问 ：走预渲染
+
+## 项目目录
+
+> build (webpack 配置)
+> dist (打包目录)
+> src
+>
+> > client (客户端)
+> > server (服务器端)
+> > shared (共用)
+> >
+> > > components (展示组件)
+> > > containers (容器组件)
+> > > store (redux store)
+> > > Routes.js (路由信息)

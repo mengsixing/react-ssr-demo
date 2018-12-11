@@ -8,10 +8,10 @@ class Detail extends React.Component {
     return (
       <>
         <Helmet>
-          <title>React服务器端渲染详情页面 -做最简单的Demo</title>
+          <title>React服务器端渲染详情页 - 做最简单的Demo</title>
           <meta
             name="description"
-            content="React服务器端渲染详情页面 -做最简单的Demo"
+            content="React服务器端渲染详情页 - 做最简单的Demo"
           />
         </Helmet>
         {this.props.islogin ? <div>Detail page</div> : <Redirect to="/" />}
