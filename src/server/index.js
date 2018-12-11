@@ -1,10 +1,10 @@
 import express from 'express';
+
 import { render } from './utils';
 import { getServerStore } from '../shared/store';
 import { matchRoutes } from 'react-router-config';
 import routes from '../shared/Routes';
 import proxy from 'express-http-proxy';
-import { resolve } from 'path';
 
 const app = express();
 

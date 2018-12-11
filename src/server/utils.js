@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
@@ -19,17 +20,19 @@ export const render = (store, routes, req, staticContext) => {
     </Provider>
   );
 
-  const styles = staticContext.styles.length? staticContext.styles.join('\n'): '';
+  const styles = staticContext.styles.length
+    ? staticContext.styles.join('\n')
+    : '';
+
+  const helmet = Helmet.renderStatic();
 
   var html = `
     <!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>React 服务器端渲染Demo</title>
-        <meta name="description" content="最精简的React服务器端渲染Demo，一起来学习吧！">
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
         <style>
           ${styles}
         </style>

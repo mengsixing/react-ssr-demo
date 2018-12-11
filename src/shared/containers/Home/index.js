@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import * as actions from './store/actions';
 import styles from './styles.css';
 import withStyle from '../../components/WithStyle';
@@ -28,22 +29,26 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div>
-        {this.renderListData()}
-        <p className={styles.test}>
-          <button onClick={() => this.showConsole()}>
-            {this.state.buttonText}
-          </button>
-        </p>
-      </div>
+      <>
+        <Helmet>
+          <title>React服务器端渲染Demo -做最简单的Demo</title>
+          <meta
+            name="description"
+            content="React服务器端渲染Demo -做最简单的Demo"
+          />
+        </Helmet>
+        <div>
+          {this.renderListData()}
+          <p className={styles.test}>
+            <button onClick={() => this.showConsole()}>
+              {this.state.buttonText}
+            </button>
+          </p>
+        </div>
+      </>
     );
   }
 }
-
-// 组件静态方法会被connect挂载到新的高阶组件上，所以connect后方法任然存在
-Home.loadData = store => {
-  return store.dispatch(actions.getHomeData());
-};
 
 const mapStateToProps = state => ({
   ...state.home
@@ -55,7 +60,14 @@ const mapDispatchtoProps = dispatch => ({
   }
 });
 
-export default connect(
+const ExportHome = connect(
   mapStateToProps,
   mapDispatchtoProps
 )(withStyle(Home, styles));
+
+// 组件静态方法会被connect挂载到新的高阶组件上，所以connect后方法任然存在,但我们自定义的withStyle并不会带上。
+ExportHome.loadData = store => {
+  return store.dispatch(actions.getHomeData());
+};
+
+export default ExportHome;
