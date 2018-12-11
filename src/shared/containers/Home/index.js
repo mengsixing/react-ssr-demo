@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import * as actions from './store/actions';
-import styles from './styles.css';
 import withStyle from '../../components/WithStyle';
+import styles from './styles.css';
 
 class Home extends React.Component {
   constructor() {

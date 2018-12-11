@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 import { reducer as homeReducer } from '../containers/Home/store';
 import { reducer as headerReducer } from '../components/Header/store';
 // 区分环境，注入对应的axios，保持客户端请求node中间层，而node请求真实的接口。
 import clientAxios from '../../client/request';
 import serverAxios from '../../server/request';
-
-import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   home: homeReducer,

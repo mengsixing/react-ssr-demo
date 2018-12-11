@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
 import { renderRoutes } from 'react-router-config';
+import Header from '../components/Header';
 import * as actions from '../components/Header/store/actions';
 
 class App extends React.Component {
