@@ -1,3 +1,22 @@
 .header{
-  background: yellowgreen;
+  background: #7dbcea;
+  height: 40px;
+  line-height: 40px;
+}
+
+.headerItem {
+  margin-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.headerItem:hover{
+  cursor: pointer;
+  background-color: blueviolet;
+}
+
+.github {
+  float: right;
+  color: white;
+  margin-right: 15px;
 }

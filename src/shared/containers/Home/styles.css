@@ -1,4 +1,9 @@
 
-.test{
-  background-color: blue;
+.list{
+  background-color: #fff1f0;
+}
+.listItem {
+  line-height: 30px;
+  font-size: 14px;
+  margin-left: 15px;
 }

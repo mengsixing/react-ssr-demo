@@ -15,15 +15,16 @@ class Header extends React.Component {
     return (
       <div className={styles.header}>
         <div>
-          <Link to="/">首页</Link>
+          <Link to="/" className={styles.headerItem}>首页</Link>
           {this.props.islogin ? (
             <>
-              |<Link to="/detail">详情页</Link>
-              <button onClick={this.props.loginout}>退出登录</button>
+              <Link to="/detail" className={styles.headerItem}>详情页</Link>
+              <a className={styles.headerItem} onClick={this.props.loginout}>退出登录</a>
             </>
           ) : (
-            <button onClick={this.props.login}>登录</button>
+            <a className={styles.headerItem} onClick={this.props.login}>登录</a>
           )}
+          <a href="https://github.com/yhlben/react-ssr-demo" className={styles.github}>github</a>
         </div>
       </div>
     );

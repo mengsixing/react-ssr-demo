@@ -19,12 +19,9 @@ class Home extends React.Component {
       this.props.getHomeData();
     }
   }
-  showConsole() {
-    console.log('打印log:', new Date());
-  }
   renderListData() {
     return this.props.list.map(item => {
-      return <div key={item.id}>标题： {item.title}</div>;
+      return <div className={styles.listItem} key={item.id}>标题： {item.title}</div>;
     });
   }
   render() {
@@ -37,13 +34,8 @@ class Home extends React.Component {
             content="React服务器端渲染Demo -做最简单的Demo"
           />
         </Helmet>
-        <div>
+        <div className={styles.list}>
           {this.renderListData()}
-          <p className={styles.test}>
-            <button onClick={() => this.showConsole()}>
-              {this.state.buttonText}
-            </button>
-          </p>
         </div>
       </>
     );
