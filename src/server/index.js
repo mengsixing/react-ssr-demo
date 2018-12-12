@@ -1,10 +1,14 @@
 import express from 'express';
+import path from 'path';
 
 import { render } from './utils';
 import { getServerStore } from '../shared/store';
 import { matchRoutes } from 'react-router-config';
 import routes from '../shared/Routes';
 import proxy from 'express-http-proxy';
+
+var fs = require('fs');
+var https = require('https');
 
 const app = express();
 
@@ -16,8 +20,7 @@ app.use(
     }
   })
 );
-
-app.use(express.static('./dist/public'));
+app.use(express.static('public'));
 
 app.get('*', (req, res) => {
   // 把req传入，方便请求时带上cookie等信息。
@@ -39,7 +42,7 @@ app.get('*', (req, res) => {
   });
 
   Promise.all(promises).then(() => {
-    const staticContext = {styles:[]};
+    const staticContext = { styles: [] };
     const html = render(store, routes, req, staticContext);
 
     if (staticContext.action === 'REPLACE') {
@@ -47,8 +50,23 @@ app.get('*', (req, res) => {
     } else {
       res.status(staticContext.statusCode || 200);
     }
+
     return res.send(html);
   });
 });
 
-app.listen(3456, () => console.log('Example app listening on port 3456!'));
+// 开启http服务
+app.listen(3456, () => console.log('http服务已启动： http://localhost:3456!'));
+
+// 开启https服务
+https
+  .createServer(
+    {
+      key: fs.readFileSync('./server.key'),
+      cert: fs.readFileSync('./server.cert')
+    },
+    app
+  )
+  .listen(3457, function() {
+    console.log('https服务已启动： https://localhost:3457!');
+  });

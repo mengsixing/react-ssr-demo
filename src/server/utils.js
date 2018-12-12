@@ -32,6 +32,7 @@ export const render = (store, routes, req, staticContext) => {
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         <style>
@@ -47,10 +48,10 @@ export const render = (store, routes, req, staticContext) => {
       </body>
     </html>
     `;
-  var minifyHtml = minify(html,{
-    minifyCSS:true,
-    minifyJS:true,
-    minifyURLs:true
-  })
+  var minifyHtml = minify(html, {
+    minifyCSS: true,
+    minifyJS: true,
+    minifyURLs: true
+  });
   return minifyHtml;
 };
