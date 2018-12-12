@@ -17,12 +17,16 @@ export const islogin = () => {
 
 export const login = () => {
   return (dispatch, getState, axios) => {
-    dispatch(actionCreater(CHANGE_LOGIN_STATE, true));
+    return axios.get('login').then(res => {
+      dispatch(actionCreater(CHANGE_LOGIN_STATE, res.data.data.success));
+    });
   };
 };
 
-export const loginout = () => {
+export const logout = () => {
   return (dispatch, getState, axios) => {
-    dispatch(actionCreater(CHANGE_LOGIN_STATE, false));
+    return axios.get('logout').then(res => {
+      dispatch(actionCreater(CHANGE_LOGIN_STATE, res.data.data.success));
+    });
   };
 };

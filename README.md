@@ -82,7 +82,7 @@
 
 2、服务器端
 
-同样使用 axios 去请求数据，但是服务器端不会触发 componentDidMount 生命周期。我们可以在后端匹配到路由的时候，进行数据请求，并把数据存入 redux 中的 store，然后渲染出包含数据的 html 页面。
+同样使用 axios 去请求数据，但是服务器端不会触发 componentDidMount 生命周期。我们可以在后端匹配到路由的时候，进行数据请求，并把数据存入 redux 中的 store，然后渲染出包含数据的 html 页面，为了避免客户端二次请求，服务器端向 window 中注入 REDUX_STORE 数据，客户端直接使用。
 
 - 在 routes 对象上挂载一个自定义方法 loadData。
 - 在服务器端 matchRoutes 后，如果有 loadData，则进行请求数据，并把请求到的数据写入 store 中。
@@ -140,7 +140,9 @@ prerender 库的原理：`先请求客户端渲染的页面，把客户端渲染
 ## 项目目录
 
 > build (webpack 配置)
+>
 > dist (打包目录)
+>
 > src
 >
 > > client (客户端)

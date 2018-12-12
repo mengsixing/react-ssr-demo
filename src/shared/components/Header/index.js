@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from './store/actions';
-import styles from './styles.css';
+import styles from './styles.less';
 import withStyle from '../WithStyle';
 
 class Header extends React.Component {
@@ -15,16 +15,29 @@ class Header extends React.Component {
     return (
       <div className={styles.header}>
         <div>
-          <Link to="/" className={styles.headerItem}>首页</Link>
+          <Link to="/" className={styles.headerItem}>
+            首页
+          </Link>
           {this.props.islogin ? (
             <>
-              <Link to="/detail" className={styles.headerItem}>详情页</Link>
-              <a className={styles.headerItem} onClick={this.props.loginout}>退出登录</a>
+              <Link to="/detail" className={styles.headerItem}>
+                详情页
+              </Link>
+              <a className={styles.headerItem} onClick={this.props.logout}>
+                退出登录
+              </a>
             </>
           ) : (
-            <a className={styles.headerItem} onClick={this.props.login}>登录</a>
+            <a className={styles.headerItem} onClick={this.props.login}>
+              登录
+            </a>
           )}
-          <a href="https://github.com/yhlben/react-ssr-demo" className={styles.github}>github</a>
+          <a
+            href="https://github.com/yhlben/react-ssr-demo"
+            className={styles.github}
+          >
+            github
+          </a>
         </div>
       </div>
     );
@@ -39,8 +52,8 @@ const mapDispatchtoProps = dispatch => ({
   login() {
     dispatch(actions.login());
   },
-  loginout() {
-    dispatch(actions.loginout());
+  logout() {
+    dispatch(actions.logout());
   }
 });
 

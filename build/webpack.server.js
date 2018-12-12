@@ -3,10 +3,10 @@ const merge = require('webpack-merge');
 // 避免把node_modules中的包输出
 const nodeExternals = require('webpack-node-externals');
 const baseConfig = require('./webpack.base.js');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const serverConfig = {
   entry: path.resolve('./src/server/index.js'),
-  mode: 'development',
   target: 'node',
   externals: [nodeExternals()],
   output: {
@@ -16,18 +16,32 @@ const serverConfig = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: [
           'isomorphic-style-loader',
           {
-            loader: 'css-loader',options: {
+            loader: 'css-loader',
+            options: {
               modules: true,
-            },
+              camelCase: true
+            }
+          },
+          {
+            loader: 'less-loader' // compiles Less to CSS
           }
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin(
+      [
+        { from: './src/server/server.cert', to: './' },
+        { from: './src/server/server.key', to: './' },
+      ],
+      {}
+    )
+  ]
 };
 
 module.exports = merge(baseConfig, serverConfig);
