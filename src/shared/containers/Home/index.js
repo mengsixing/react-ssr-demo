@@ -8,9 +8,6 @@ import styles from './styles.less';
 class Home extends React.Component {
   constructor() {
     super();
-    this.state = {
-      buttonText: '点击按钮'
-    };
   }
   // 在服务器端渲染中不会触发此声明周期
   componentDidMount() {
@@ -21,7 +18,11 @@ class Home extends React.Component {
   }
   renderListData() {
     return this.props.list.map(item => {
-      return <div className={styles.listItem} key={item.id}>标题： {item.title}</div>;
+      return (
+        <div className={styles.listItem} key={item.id}>
+          标题： {item.title}
+        </div>
+      );
     });
   }
   render() {
@@ -34,9 +35,8 @@ class Home extends React.Component {
             content="React服务器端渲染Demo -做最简单的Demo"
           />
         </Helmet>
-        <div className={styles.list}>
-          {this.renderListData()}
-        </div>
+        <div className={styles.listTitle}>mock列表</div>
+        <div className={styles.list}>{this.renderListData()}</div>
       </>
     );
   }

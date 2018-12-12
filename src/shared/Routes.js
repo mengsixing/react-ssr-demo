@@ -1,6 +1,6 @@
 import App from '../shared/containers/App';
 import Home from './containers/Home';
-import Detail from './containers/Detail';
+import Member from './containers/Member';
 import NotFound from './containers/NotFound';
 
 const routes = [
@@ -18,10 +18,11 @@ const routes = [
         loadData: Home.loadData
       },
       {
-        key: 'detail',
-        path: '/detail',
-        component: Detail,
-        exact: true
+        key: 'member',
+        path: '/member',
+        component: Member,
+        exact: true,
+        loadData: Member.loadData
       },
       {
         // 配置404页面

@@ -20,8 +20,8 @@ class Header extends React.Component {
           </Link>
           {this.props.islogin ? (
             <>
-              <Link to="/detail" className={styles.headerItem}>
-                详情页
+              <Link to="/member" className={styles.headerItem}>
+                内部资料
               </Link>
               <a className={styles.headerItem} onClick={this.props.logout}>
                 退出登录

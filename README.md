@@ -88,6 +88,8 @@
 - 在服务器端 matchRoutes 后，如果有 loadData，则进行请求数据，并把请求到的数据写入 store 中。
 - 服务器端等待请求完成后，再进行 renderToString 渲染。
 
+> 项目中使用 easy-mock 注入 cookie 来模拟登录，由于 easy-mock 写入 cookie 采用了安全机制：使用了 *secure* 和 *HttpOnly*，所以需使用 https 模拟来查看最佳效果。
+
 ## 样式处理
 
 1、客户端
@@ -158,3 +160,7 @@ prerender 库的原理：`先请求客户端渲染的页面，把客户端渲染
 > > > store (redux store)
 > > >
 > > > Routes.js (路由信息)
+
+## 参考资料
+
+[express 部署 https](https://timonweb.com/posts/running-expressjs-server-over-https/)

@@ -2,17 +2,19 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as homeReducer } from '../containers/Home/store';
 import { reducer as headerReducer } from '../components/Header/store';
+import { reducer as memberReducer } from '../containers/Member/store';
 // 区分环境，注入对应的axios，保持客户端请求node中间层，而node请求真实的接口。
 import clientAxios from '../../client/request';
 import serverAxios from '../../server/request';
 
 const rootReducer = combineReducers({
   home: homeReducer,
-  header: headerReducer
+  header: headerReducer,
+  member: memberReducer
 });
 
 // 每一次调用返回一个新的store，避免服务器端所有人都引用的同一个对象
-export const getServerStore = (req) =>
+export const getServerStore = req =>
   createStore(
     rootReducer,
     applyMiddleware(thunk.withExtraArgument(serverAxios(req)))
