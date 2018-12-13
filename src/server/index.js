@@ -57,11 +57,17 @@ app.get('*', (req, res) => {
 // app.listen(8086, () => console.log('http服务已启动： http://localhost:8086!'));
 
 // 开启https服务(使用的自制证书，浏览器会报安全警告)
+let serverKey = './server.key';
+let serverCert = './server.cert';
+if (process.env.NODE_ENV === 'production') {
+  serverKey = '/etc/letsencrypt/live/yinhengli.com/privkey.pem';
+  serverCert = '/etc/letsencrypt/live/yinhengli.com/fullchain.pem';
+}
 https
   .createServer(
     {
-      key: fs.readFileSync('./server.key'),
-      cert: fs.readFileSync('./server.cert')
+      key: fs.readFileSync(serverKey),
+      cert: fs.readFileSync(serverCert)
     },
     app
   )
