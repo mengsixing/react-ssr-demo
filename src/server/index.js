@@ -56,7 +56,7 @@ app.get('*', (req, res) => {
 });
 
 // 开启http服务
-app.listen(3456, () => console.log('http服务已启动： http://localhost:3456!'));
+app.listen(8086, () => console.log('http服务已启动： http://localhost:8086!'));
 
 // 开启https服务
 https
@@ -67,6 +67,6 @@ https
     },
     app
   )
-  .listen(3457, function() {
-    console.log('https服务已启动： https://localhost:3457!');
+  .listen(8084, function() {
+    console.log('https服务已启动： https://localhost:8084!');
   });
