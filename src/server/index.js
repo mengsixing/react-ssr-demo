@@ -54,9 +54,9 @@ app.get('*', (req, res) => {
 });
 
 // 开启http服务
-app.listen(8086, () => console.log('http服务已启动： http://localhost:8086!'));
+// app.listen(8086, () => console.log('http服务已启动： http://localhost:8086!'));
 
-// 开启https服务
+// 开启https服务(使用的自制证书，浏览器会报安全警告)
 https
   .createServer(
     {

@@ -5,6 +5,7 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { minify } from 'html-minifier';
+import qiniuConfig from '../../build/qiniu.config';
 
 export const render = (store, routes, req, staticContext) => {
   // matchPath只能解决单级路由
@@ -44,7 +45,7 @@ export const render = (store, routes, req, staticContext) => {
         <script>
           window.REDUX_STORE = ${JSON.stringify(store.getState())};
         </script>
-        <script src="./client.js" defer></script>
+        <script src="${qiniuConfig.publicPath + '/client.js'}" defer></script>
       </body>
     </html>
     `;
