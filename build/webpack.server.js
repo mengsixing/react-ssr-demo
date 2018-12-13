@@ -6,6 +6,7 @@ const baseConfig = require('./webpack.base.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const serverConfig = {
+  mode: process.env.NODE_ENV,
   entry: path.resolve('./src/server/index.js'),
   target: 'node',
   externals: [nodeExternals()],
@@ -30,18 +31,20 @@ const serverConfig = {
             loader: 'less-loader' // compiles Less to CSS
           }
         ]
-      }
+      },
+
     ]
   },
   plugins: [
     new CopyWebpackPlugin(
       [
         { from: './src/server/server.cert', to: './' },
-        { from: './src/server/server.key', to: './' },
+        { from: './src/server/server.key', to: './' }
       ],
       {}
     )
-  ]
+  ],
+  watch: process.env.NODE_ENV === 'development'
 };
 
 module.exports = merge(baseConfig, serverConfig);

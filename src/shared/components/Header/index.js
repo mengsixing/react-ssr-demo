@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actions from './store/actions';
 import styles from './styles.less';
 import withStyle from '../WithStyle';
+import githubImage from './github.png';
 
 class Header extends React.Component {
   componentWillMount() {
@@ -23,20 +24,28 @@ class Header extends React.Component {
               <Link to="/member" className={styles.headerItem}>
                 内部资料
               </Link>
-              <a className={styles.headerItem} onClick={this.props.logout}>
-                退出登录
-              </a>
+              <span className={styles.headerItem}>
+                {this.props.isloading ? (
+                  '正在退出，请稍等...'
+                ) : (
+                  <span onClick={this.props.logout}>退出登录</span>
+                )}
+              </span>
             </>
           ) : (
-            <a className={styles.headerItem} onClick={this.props.login}>
-              登录
-            </a>
+            <span className={styles.headerItem}>
+              {this.props.isloading ? (
+                '登录中，请稍等...'
+              ) : (
+                <span onClick={this.props.login}>登录</span>
+              )}
+            </span>
           )}
           <a
             href="https://github.com/yhlben/react-ssr-demo"
             className={styles.github}
           >
-            github
+            <img src={githubImage} />
           </a>
         </div>
       </div>

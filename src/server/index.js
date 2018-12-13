@@ -1,6 +1,4 @@
 import express from 'express';
-import path from 'path';
-
 import { render } from './utils';
 import { getServerStore } from '../shared/store';
 import { matchRoutes } from 'react-router-config';

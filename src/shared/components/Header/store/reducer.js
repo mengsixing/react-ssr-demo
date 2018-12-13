@@ -1,6 +1,7 @@
-import { CHANGE_LOGIN_STATE } from './constants';
+import { CHANGE_LOGIN_STATE, CHANGE_LOADING } from './constants';
 const initState = {
-  islogin: false
+  islogin: false,
+  isloading: false
 };
 
 const reducer = (state = initState, action) => {
@@ -9,6 +10,11 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         islogin: action.payload
+      };
+    case CHANGE_LOADING:
+      return {
+        ...state,
+        isloading: action.payload
       };
     default:
       return state;

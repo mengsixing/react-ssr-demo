@@ -4,6 +4,10 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: ['url-loader']
       }
     ]
   }
