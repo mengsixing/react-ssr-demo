@@ -2,6 +2,16 @@
 
 一个精简的 React 服务器端渲染 Demo。
 
+1、访问 [Online Demo](https://yinhengli.com:8084/)
+
+2、我们可以看到，首屏数据很快的就显示出来了，而页面右上角还在不停的加载（因为客户端 js 很大）。
+
+3、等待 js 加载完成时候，页面才能进行操作（切换路由，登录等）。
+
+> ps: 效果不明显的话，可以打开控制台，在 Network 栏 Disable cache，然后刷新。
+
+这其实体现出服务器端渲染的 2 大特点，`首屏直出`，`SEO 友好`。
+
 ## 为什么要做服务器端渲染？
 
 我们在访问客户端渲染的页面时，请求到的只是一个 html 空壳，里面引入了一个 js 文件，所有的内容都是通过 js 进行插入的，类似于这样：
@@ -88,7 +98,7 @@
 - 在服务器端 matchRoutes 后，如果有 loadData，则进行请求数据，并把请求到的数据写入 store 中。
 - 服务器端等待请求完成后，再进行 renderToString 渲染。
 
-> 项目中使用 easy-mock 注入 cookie 来模拟登录，由于 easy-mock 写入 cookie 采用了安全机制：使用了 *secure* 和 *HttpOnly*，所以需使用 https 模拟来查看最佳效果。
+> 项目中使用 easy-mock 注入 cookie 来模拟登录，由于 easy-mock 写入 cookie 采用了安全机制：使用了 _secure_ 和 _HttpOnly_，所以需使用 https 模拟来查看最佳效果。
 
 ## 样式处理
 
@@ -163,4 +173,6 @@ prerender 库的原理：`先请求客户端渲染的页面，把客户端渲染
 
 ## 参考资料
 
-[express 部署 https](https://timonweb.com/posts/running-expressjs-server-over-https/)
+[Express 部署 Https](https://timonweb.com/posts/running-expressjs-server-over-https/)
+
+[免费证书 Let's Encrypt](https://letsencrypt.org/)
