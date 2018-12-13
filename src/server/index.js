@@ -59,7 +59,7 @@ app.get('*', (req, res) => {
 // 开启https服务(使用的自制证书，浏览器会报安全警告)
 let serverKey = './server.key';
 let serverCert = './server.cert';
-if (process.env.NODE_ENV === 'production') {
+if (fs.existsSync('/etc/letsencrypt/live/yinhengli.com/privkey.pem')) {
   serverKey = '/etc/letsencrypt/live/yinhengli.com/privkey.pem';
   serverCert = '/etc/letsencrypt/live/yinhengli.com/fullchain.pem';
 }
