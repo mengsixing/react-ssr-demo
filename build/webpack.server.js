@@ -28,11 +28,10 @@ const serverConfig = {
             }
           },
           {
-            loader: 'less-loader' // compiles Less to CSS
+            loader: 'less-loader'
           }
         ]
-      },
-
+      }
     ]
   },
   plugins: [
@@ -40,8 +39,7 @@ const serverConfig = {
       [
         { from: './src/server/server.cert', to: './' },
         { from: './src/server/server.key', to: './' }
-      ],
-      {}
+      ]
     )
   ],
   watch: process.env.NODE_ENV === 'development'

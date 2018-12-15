@@ -1,7 +1,7 @@
 {
   "name": "react-ssr-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "React 服务器端渲染 Demo",
   "main": "index.js",
   "scripts": {
     "build": "npm-run-all --parallel build:*",
@@ -10,7 +10,8 @@
     "dev:client": "cross-env NODE_ENV=development webpack --mode=development --config ./build/webpack.client.js",
     "dev:start": "cd dist && sleep 5 && nodemon --watch ./ --exec node ./server.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.js",
-    "build:client": "cross-env NODE_ENV=production webpack --config ./build/webpack.client.js"
+    "build:client": "cross-env NODE_ENV=production webpack --config ./build/webpack.client.js",
+    "serve": "cd dist &&  nodemon ./server.js"
   },
   "keywords": [
     "ssr"

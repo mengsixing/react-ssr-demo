@@ -1,12 +1,11 @@
+import fs from 'fs';
+import https from 'https';
 import express from 'express';
+import { matchRoutes } from 'react-router-config';
+import proxy from 'express-http-proxy';
 import { render } from './utils';
 import { getServerStore } from '../shared/store';
-import { matchRoutes } from 'react-router-config';
 import routes from '../shared/Routes';
-import proxy from 'express-http-proxy';
-
-var fs = require('fs');
-var https = require('https');
 
 const app = express();
 
@@ -52,9 +51,6 @@ app.get('*', (req, res) => {
     return res.send(html);
   });
 });
-
-// 开启http服务
-// app.listen(8086, () => console.log('http服务已启动： http://localhost:8086!'));
 
 // 开启https服务(使用的自制证书，浏览器会报安全警告)
 let serverKey = './server.key';
