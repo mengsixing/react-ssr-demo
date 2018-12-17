@@ -1,4 +1,4 @@
-import App from '../shared/containers/App';
+import App from './containers/App';
 import Home from './containers/Home';
 import Member from './containers/Member';
 import NotFound from './containers/NotFound';
@@ -15,21 +15,21 @@ const routes = [
         path: '/',
         component: Home,
         exact: true,
-        loadData: Home.loadData
+        loadData: Home.loadData,
       },
       {
         key: 'member',
         path: '/member',
         component: Member,
         exact: true,
-        loadData: Member.loadData
+        loadData: Member.loadData,
       },
       {
         // 配置404页面
-        component: NotFound
-      }
-    ]
-  }
+        component: NotFound,
+      },
+    ],
+  },
 ];
 
 export default routes;

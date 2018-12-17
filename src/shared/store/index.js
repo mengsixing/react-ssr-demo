@@ -10,15 +10,15 @@ import serverAxios from '../../server/request';
 const rootReducer = combineReducers({
   home: homeReducer,
   header: headerReducer,
-  member: memberReducer
+  member: memberReducer,
 });
 
 // 每一次调用返回一个新的store，避免服务器端所有人都引用的同一个对象
-export const getServerStore = req =>
-  createStore(
-    rootReducer,
-    applyMiddleware(thunk.withExtraArgument(serverAxios(req)))
-  );
+
+export const getServerStore = (req) => {
+  const middleWares = thunk.withExtraArgument(serverAxios(req));
+  return createStore(rootReducer, applyMiddleware(middleWares));
+};
 
 export const getCLientStore = () => {
   // 如果服务器端已经产生了数据，就作为默认store使用
@@ -26,6 +26,6 @@ export const getCLientStore = () => {
   return createStore(
     rootReducer,
     defaultStore,
-    applyMiddleware(thunk.withExtraArgument(clientAxios))
+    applyMiddleware(thunk.withExtraArgument(clientAxios)),
   );
 };

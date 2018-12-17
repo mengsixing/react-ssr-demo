@@ -3,7 +3,7 @@ import https from 'https';
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
 import proxy from 'express-http-proxy';
-import { render } from './utils';
+import render from './utils';
 import { getServerStore } from '../shared/store';
 import routes from '../shared/Routes';
 
@@ -12,10 +12,10 @@ const app = express();
 app.use(
   '/api',
   proxy('https://www.easy-mock.com', {
-    proxyReqPathResolver: function(req) {
-      return '/mock/5c0b417d6162b83fe0a50c81/example' + req.url;
-    }
-  })
+    proxyReqPathResolver(req) {
+      return `/mock/5c0b417d6162b83fe0a50c81/example${req.url}`;
+    },
+  }),
 );
 app.use(express.static('public'));
 
@@ -25,10 +25,10 @@ app.get('*', (req, res) => {
   const matchedRoutes = matchRoutes(routes, req.path);
 
   const promises = [];
-  matchedRoutes.forEach(item => {
+  matchedRoutes.forEach((item) => {
     if (item.route.loadData) {
       // promise容错处理
-      const promise = new Promise(resolve => {
+      const promise = new Promise((resolve) => {
         item.route
           .loadData(store)
           .then(resolve)
@@ -63,10 +63,10 @@ https
   .createServer(
     {
       key: fs.readFileSync(serverKey),
-      cert: fs.readFileSync(serverCert)
+      cert: fs.readFileSync(serverCert),
     },
-    app
+    app,
   )
-  .listen(8084, function() {
+  .listen(8084, () => {
     console.log('https服务已启动： https://localhost:8084!');
   });

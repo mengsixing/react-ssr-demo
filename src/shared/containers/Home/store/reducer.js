@@ -1,6 +1,7 @@
 import { HOME_DATA } from './constants';
+
 const initState = {
-  list: []
+  list: [],
 };
 
 const reducer = (state = initState, action) => {
@@ -8,7 +9,7 @@ const reducer = (state = initState, action) => {
     case HOME_DATA:
       return {
         ...state,
-        list: action.payload
+        list: action.payload,
       };
     default:
       return state;

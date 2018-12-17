@@ -11,7 +11,8 @@
     "dev:start": "cd dist && sleep 5 && nodemon --watch ./ --exec node ./server.js",
     "build:server": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.js",
     "build:client": "cross-env NODE_ENV=production webpack --config ./build/webpack.client.js",
-    "serve": "cd dist &&  nodemon ./server.js"
+    "serve": "cd dist &&  nodemon ./server.js",
+    "lint": "eslint src --fix"
   },
   "keywords": [
     "ssr"
@@ -30,17 +31,27 @@
     "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "prop-types": "^15.6.2",
+    "webpack-merge": "^4.1.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "webpack-node-externals": "^1.7.2",
+    "html-minifier": "^3.5.21"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
-    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.0.0",
-    "html-minifier": "^3.5.21",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "isomorphic-style-loader": "^4.0.0",
     "less-loader": "^4.1.0",
     "nodemon": "^1.18.7",
@@ -49,8 +60,6 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.27.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-merge": "^4.1.4",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-cli": "^3.1.2"
   }
 }

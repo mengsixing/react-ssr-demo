@@ -6,28 +6,22 @@ import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { minify } from 'html-minifier';
 
-export const render = (store, routes, req, staticContext) => {
+export default (store, routes, req, staticContext) => {
   // matchPath只能解决单级路由
-  // routes.some(route => {
-  // 	const match = matchPath(req.path, route);
-  // 	if (match) matchedRoutes.push(route);
-  // });
-
+  /* eslint-disable react/jsx-filename-extension */
   const content = renderToString(
     <Provider store={store}>
       <StaticRouter context={staticContext} location={req.url}>
         {renderRoutes(routes)}
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
-  const styles = staticContext.styles.length
-    ? staticContext.styles.join('\n')
-    : '';
+  const styles = staticContext.styles.length ? staticContext.styles.join('\n') : '';
 
   const helmet = Helmet.renderStatic();
 
-  var html = `
+  const html = `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -48,10 +42,10 @@ export const render = (store, routes, req, staticContext) => {
       </body>
     </html>
     `;
-  var minifyHtml = minify(html, {
+  const minifyHtml = minify(html, {
     minifyCSS: true,
     minifyJS: true,
-    minifyURLs: true
+    minifyURLs: true,
   });
   return minifyHtml;
 };

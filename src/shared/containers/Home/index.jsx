@@ -9,6 +9,7 @@ class Home extends React.Component {
   constructor() {
     super();
   }
+
   // 在服务器端渲染中不会触发此声明周期
   componentDidMount() {
     // 优化请求：如果服务器端已经请求了数据，则不必二次请求
@@ -16,24 +17,23 @@ class Home extends React.Component {
       this.props.getHomeData();
     }
   }
+
   renderListData() {
-    return this.props.list.map(item => {
-      return (
-        <div className={styles.listItem} key={item.id}>
-          标题： {item.title}
-        </div>
-      );
-    });
+    return this.props.list.map(item => (
+      <div className={styles.listItem} key={item.id}>
+        标题：
+        {' '}
+        {item.title}
+      </div>
+    ));
   }
+
   render() {
     return (
       <>
         <Helmet>
           <title>React服务器端渲染Demo -做最简单的Demo</title>
-          <meta
-            name="description"
-            content="React服务器端渲染Demo -做最简单的Demo"
-          />
+          <meta name="description" content="React服务器端渲染Demo -做最简单的Demo" />
         </Helmet>
         <div className={styles.listTitle}>mock列表</div>
         <div className={styles.list}>{this.renderListData()}</div>
@@ -43,23 +43,21 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.home
+  ...state.home,
 });
 
 const mapDispatchtoProps = dispatch => ({
   getHomeData() {
     dispatch(actions.getHomeData());
-  }
+  },
 });
 
 const ExportHome = connect(
   mapStateToProps,
-  mapDispatchtoProps
+  mapDispatchtoProps,
 )(withStyle(Home, styles));
 
 // 组件静态方法会被connect挂载到新的高阶组件上，所以connect后方法任然存在,但我们自定义的withStyle并不会带上。
-ExportHome.loadData = store => {
-  return store.dispatch(actions.getHomeData());
-};
+ExportHome.loadData = store => store.dispatch(actions.getHomeData());
 
 export default ExportHome;

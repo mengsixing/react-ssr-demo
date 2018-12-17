@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const clientConfig = {
   mode: process.env.NODE_ENV,
-  entry: './src/client/index.js',
+  entry: './src/client/index.jsx',
   output: {
     filename: 'client.js',
     path: path.resolve(__dirname, '../dist/public')
