@@ -8,7 +8,7 @@ class NotFound extends React.Component {
   };
 
   static propTypes = {
-    staticContext: PropTypes.objectOf(),
+    staticContext: PropTypes.objectOf(PropTypes.any),
   };
 
   componentWillMount() {
