@@ -1,5 +1,7 @@
 # React 服务器端渲染 Demo
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yhlben/react-ssr-demo.svg)](https://greenkeeper.io/)
+
 最近在学习 React 的服务端渲染，于是使用 Express+React 写了一个 Demo，用于对比和客户端渲染的差异。
 
 先看一下效果吧：
