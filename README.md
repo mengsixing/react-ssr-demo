@@ -1,10 +1,10 @@
 # React 服务器端渲染 Demo
 
-最近在学习 React 的服务端渲染，于是使用 Express + React 写了一个 Demo，用于对比和客户端渲染的差异。如果想直接学习搭建 SSR，直接看[这里](https://github.com/yhlben/react-ssr-demo/blob/master/README.md)
+最近在学习 React 的服务端渲染，于是使用 Express + React 写了一个 Demo，用于对比和客户端渲染的差异。如果想直接学习搭建 SSR，直接看[这里](https://github.com/yhlben/react-ssr-demo/blob/master/STEP.md)。
 
 先看一下效果吧：
 
-1、访问 [服务器端渲染 Online Demo](https://yinhengli.com:8084/)
+1、访问 [服务器端渲染 Online Demo](https://yinhengli.com:8084/)。
 
 2、我们可以看到，首屏数据很快的就显示出来了，可是页面的进度条却还在加载中（因为客户端 js 很大）。
 
@@ -18,7 +18,7 @@
 
 ## 为什么要做服务器端渲染？
 
-1、访问 [客户端渲染 Online Demo](https://yinhengli.com:8086/)
+1、访问 [客户端渲染 Online Demo](https://yinhengli.com:8086/)。
 
 2、我们可以看到，首屏至少等待了 6 秒才渲染出来，这对于一般的用户，是难以容忍的。
 
