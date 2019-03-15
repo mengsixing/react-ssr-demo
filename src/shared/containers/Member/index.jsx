@@ -3,8 +3,9 @@ import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/withStyles';
 import * as actions from './store/actions';
-import withStyle from '../../components/WithStyle';
+// import withStyle from '../../components/WithStyle';
 import styles from './styles.less';
 
 class Member extends React.Component {
@@ -90,7 +91,7 @@ const mapDispatchToProps = dispatch => ({
 const ExportMember = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyle(Member, styles));
+)(withStyles(styles)(Member));
 
 ExportMember.loadData = store => store.dispatch(actions.getMemberList());
 

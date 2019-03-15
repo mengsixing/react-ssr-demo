@@ -5,19 +5,21 @@ import { StaticRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { minify } from 'html-minifier';
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
-export default (store, routes, req, staticContext) => {
+export default (store, routes, req) => {
+  const css = new Set();
+  /* eslint-disable no-underscore-dangle */
+  const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()));
   // matchPath只能解决单级路由
   /* eslint-disable react/jsx-filename-extension */
   const content = renderToString(
-    <Provider store={store}>
-      <StaticRouter context={staticContext} location={req.url}>
-        {renderRoutes(routes)}
-      </StaticRouter>
-    </Provider>,
+    <StyleContext.Provider value={{ insertCss }}>
+      <Provider store={store}>
+        <StaticRouter location={req.url}>{renderRoutes(routes)}</StaticRouter>
+      </Provider>
+    </StyleContext.Provider>,
   );
-
-  const styles = staticContext.styles.length ? staticContext.styles.join('\n') : '';
 
   const helmet = Helmet.renderStatic();
 
@@ -29,9 +31,7 @@ export default (store, routes, req, staticContext) => {
         <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
-        <style>
-          ${styles}
-        </style>
+        <style>${[...css].join('')}</style>
       </head>
       <body>
         <div id="root">${content}</div>

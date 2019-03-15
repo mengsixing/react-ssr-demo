@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/withStyles'
 import * as actions from './store/actions';
 import styles from './styles.less';
-import withStyle from '../WithStyle';
 import githubImage from './github.png';
 
 class Header extends React.Component {
@@ -78,4 +78,4 @@ const mapDispatchtoProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchtoProps,
-)(withStyle(Header, styles));
+)(withStyles(styles)(Header));

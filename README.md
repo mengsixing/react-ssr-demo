@@ -1,6 +1,6 @@
 # React 服务器端渲染 Demo
 
-最近在学习 React 的服务端渲染，于是使用 Express+React 写了一个 Demo，用于对比和客户端渲染的差异。
+最近在学习 React 的服务端渲染，于是使用 Express + React 写了一个 Demo，用于对比和客户端渲染的差异。如果想直接学习搭建 SSR，直接看[这里](https://github.com/yhlben/react-ssr-demo/blob/master/README.md)
 
 先看一下效果吧：
 
@@ -66,7 +66,7 @@
 
 2、客户端根据渲染出的静态 html 进行`二次渲染`，做一些绑定事件等操作。
 
-> 服务器端没有 DOM，Window 等概念，所以只能渲染出字符串，不能进行事件绑定，样式渲染等。
+> 服务器端没有 dom，window 等概念，所以只能渲染出字符串，不能进行事件绑定，样式渲染等。
 > 只有第一次访问页面时才使用服务器端渲染，之后会被客户端渲染接管。
 
 ## 开始写代码吧
@@ -173,25 +173,18 @@ prerender 库的原理：`先请求客户端渲染的页面，把客户端渲染
 
 ## 项目目录
 
-> build (webpack 配置)
->
-> dist (打包目录)
->
-> src
->
-> > client (客户端)
-> >
-> > server (服务器端)
-> >
-> > shared (前后端共用)
-> >
-> > > components (展示组件)
-> > >
-> > > containers (容器组件)
-> > >
-> > > store (redux store)
-> > >
-> > > Routes.js (路由信息)
+```js
+|- build (webpack 配置)
+|- dist (打包目录)
+|- src
+  |-- client (客户端)
+  |-- server (服务器端)
+  |-- shared (前后端共用)
+    |--- components (展示组件)
+    |--- containers (容器组件)
+    |--- store (redux store)
+    |--- Routes.js (路由信息)
+```
 
 ## 参考资料
 

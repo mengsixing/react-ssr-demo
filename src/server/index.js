@@ -23,7 +23,6 @@ app.get('*', (req, res) => {
   // 把req传入，方便请求时带上cookie等信息。
   const store = getServerStore(req);
   const matchedRoutes = matchRoutes(routes, req.path);
-
   const promises = [];
   matchedRoutes.forEach((item) => {
     if (item.route.loadData) {
@@ -39,15 +38,7 @@ app.get('*', (req, res) => {
   });
 
   Promise.all(promises).then(() => {
-    const staticContext = { styles: [] };
-    const html = render(store, routes, req, staticContext);
-
-    if (staticContext.action === 'REPLACE') {
-      res.redirect(staticContext.url);
-    } else {
-      res.status(staticContext.statusCode || 200);
-    }
-
+    const html = render(store, routes, req);
     return res.send(html);
   });
 });
