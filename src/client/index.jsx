@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
@@ -21,4 +21,4 @@ const App = () => (
 );
 
 // 根据服务器端生成的页面，进行二次渲染（事件绑定等）
-hydrate(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));

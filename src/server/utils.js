@@ -34,10 +34,7 @@ export default (store, routes, req) => {
         <style>${[...css].join('')}</style>
       </head>
       <body>
-        <div id="root">${content}</div>
-        <script>
-          window.REDUX_STORE = ${JSON.stringify(store.getState())};
-        </script>
+        <div id="root"></div>
         <script src="/client.js" defer></script>
       </body>
     </html>
