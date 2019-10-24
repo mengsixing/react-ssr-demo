@@ -53,7 +53,7 @@ class Header extends React.Component {
               {isloading ? '登录中，请稍等...' : <span onClick={login}>登录</span>}
             </span>
           )}
-          <a href="https://github.com/yhlben/react-ssr-demo" className={styles.github}>
+          <a href="https://github.com/lmjben/react-ssr-demo" className={styles.github}>
             <img src={githubImage} alt="github" />
           </a>
         </div>

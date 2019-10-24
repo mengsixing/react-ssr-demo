@@ -18,8 +18,8 @@
     "ssr",
     "服务器端渲染"
   ],
-  "author": "yhlben",
-  "license": "ISC",
+  "author": "lmjben",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.4",
